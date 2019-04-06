@@ -1,0 +1,5 @@
+How many lines in total are there in the file:4016
+How many WORDS are there in the file:20080
+Line number of lines which contain BOTH of these words: Sea 144 and Fare 29
+Linne numbers of the lines which contain the word:Fare without the word:War:  14
+Average number of letters per word returned as a float:5
