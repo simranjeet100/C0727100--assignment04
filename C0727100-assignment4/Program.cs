@@ -16,25 +16,21 @@ namespace C0727100_assignment4
 
 
 
-
-
         static void Main(string[] args)
 
         {
 
+
+
             Program p = new Program();
-
-
-
-            p.ReadTextFiles();
 
             p.Beowulf = new ArrayList();
 
-            p.TotalWords();
-
-            p.Both();
+            p.Wordskipper();
 
             Console.ReadLine();
+
+
 
         }
 
@@ -51,6 +47,8 @@ namespace C0727100_assignment4
         public void ReadTextFiles()
 
         {
+
+
 
             // Read file using StreamReader. Read file line by line
 
@@ -70,13 +68,13 @@ namespace C0727100_assignment4
 
                     Console.WriteLine(ln);
 
+                    Beowulf.Add(ln);
+
                 }
 
                 file.Close();
 
-                counter = File.ReadLines("Beowulf.txt").Count();
-
-                Console.WriteLine("\n\n\nThe file has " + counter + " lines");
+                Console.WriteLine($"File has {counter} lines.");
 
             }
 
@@ -86,41 +84,59 @@ namespace C0727100_assignment4
 
         {
 
-            https://stackoverflow.com/questions/17812566/count-words-and-spaces-in-string-c-sharp
-
             int countletters = 0;
 
             int countSpaces = 0;
 
-
-
-            foreach (char c in line)
-
             {
 
-                if (char.IsLetter(c)) { countletters++; }
+                foreach (char c in line)
 
+                {
 
+                    if (char.IsLetter(c)) { countletters++; }
 
-                if (char.IsWhiteSpace(c)) { countletters++; }
+                    if (char.IsWhiteSpace(c)) { countSpaces++; }
+
+                }
+
+                return countSpaces;
 
             }
 
-            return countSpaces;
+        }
 
+        public void CountLinesReader()
 
+        {
+
+            long lineCounter = 0;
+
+            using (StreamReader fil = new StreamReader(@"C:\notepad\Beowulf.txt"))
+
+            {
+
+                while (fil.ReadLine() != null)
+
+                {
+
+                    lineCounter++;
+
+                }
+
+                Console.WriteLine(lineCounter);
+
+            }
 
         }
 
-
-
-        public long TotalWords()
+        public void WordCounter()
 
         {
 
 
 
-            StreamReader reader = new StreamReader("Beowulf.txt");
+            StreamReader reader = new StreamReader(@"C:\notepad\Beowulf.txt");
 
             string script = reader.ReadToEnd();
 
@@ -128,9 +144,7 @@ namespace C0727100_assignment4
 
             var text = script.Trim();
 
-            long wordCount = 0;
-
-            int index = 0;
+            int wordCount = 0, index = 0;
 
 
 
@@ -160,31 +174,31 @@ namespace C0727100_assignment4
 
 
 
-            Console.WriteLine("The file has " + wordCount + " words");
+            Console.WriteLine(wordCount);
 
-            return wordCount;
+
 
 
 
         }
 
-        public void Both()
+        public void Wordfinder()
 
         {
 
-            int a = 0;
+            int f = 0;
 
-            foreach (var lines in File.ReadAllLines("Beowulf.txt"))
+            foreach (var line in File.ReadAllLines(@"C:\notepad\Beowulf.txt"))
 
             {
 
-                a++;
+                f++;
 
-                if (lines.Contains("sea") && lines.Contains("fare"))
+                if (line.Contains("sea") && line.Contains("fare"))
 
                 {
 
-                    Console.WriteLine("The lines that contain words sea and fare are " + a);
+                    Console.WriteLine(f);
 
                 }
 
@@ -194,21 +208,63 @@ namespace C0727100_assignment4
 
         }
 
+        public void Wordskipper()
+
+        {
+
+            int f = 0;
+
+            foreach (var line in File.ReadAllLines(@"C:\notepad\Beowulf.txt"))
+
+            {
+
+                f++;
+
+                if (line.Contains("fare") && (!line.Contains("war")))
+
+                {
+
+                    Console.WriteLine(f);
+
+                }
 
 
 
+            }
 
 
 
+        }
+
+        public void Letters()
+
+        {
 
 
 
+            StreamReader reader = new StreamReader("Beowulf.txt");
+
+            string script = reader.ReadToEnd();
+
+            int numberOfLetters = 0;
+
+            foreach (char letter in script)
+
+            {
+
+                numberOfLetters++;
+
+            }
+
+            Console.WriteLine(numberOfLetters);
+
+
+
+        }
 
 
 
     }
-
-
 
 
 
